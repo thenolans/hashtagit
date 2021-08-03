@@ -1,4 +1,4 @@
-import CategoryAPI from "api/category";
+import useHttp from "hooks/useHttp";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Category, Response } from "types";
@@ -20,10 +20,16 @@ const CategoryContext = createContext<CategoryContextType>({
 });
 
 export const CategoryProvider = ({ children }: { children: ReactNode }) => {
+  const {
+    listCategories,
+    createCategory,
+    removeCategory: removeCategoryRequest,
+    updateCategory: updateCategoryRequest,
+  } = useHttp();
   const [categories, setCategories] = useState<Category[]>([]);
   const { data, isLoading: isFetching } = useQuery<Response<Category[]>>(
     ["categories"],
-    () => CategoryAPI.list(),
+    () => listCategories(),
     {
       retry: false,
       refetchOnWindowFocus: false,
@@ -38,7 +44,7 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
 
   async function addCategory(category: Omit<Category, "_id">) {
     try {
-      const newCategory = await CategoryAPI.create(category);
+      const newCategory = await createCategory(category);
       setCategories((prevCategories) => [...prevCategories, newCategory]);
     } catch {
       // TODO
@@ -47,7 +53,7 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
 
   async function updateCategory(category: Category) {
     try {
-      const updatedCategory = await CategoryAPI.update(category);
+      const updatedCategory = await updateCategoryRequest(category);
       setCategories((prevCategories) =>
         prevCategories.map((c) => {
           if (c._id === updatedCategory._id) {
@@ -63,7 +69,7 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
 
   async function removeCategory(categoryId: string) {
     try {
-      await CategoryAPI.remove(categoryId);
+      await removeCategoryRequest(categoryId);
       setCategories((prevCategories) =>
         prevCategories.filter((category) => category._id !== categoryId)
       );
