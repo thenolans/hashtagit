@@ -1,21 +1,28 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import Account from "components/Account";
+import AuthLoader from "components/AuthLoader";
 import HashtagSelector from "components/HashtagSelector";
+import LandingPage from "components/LandingPage";
 import ProtectedRoute from "components/ProtectedRoute";
 import Urls from "constants/urls";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
 const App = () => {
+  const { isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <AuthLoader />;
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
         <Switch>
-          <ProtectedRoute
-            path={Urls.routes.selector}
-            component={HashtagSelector}
-          />
+          <Route exact path={Urls.routes.root} component={LandingPage} />
+          <ProtectedRoute path={Urls.routes.app} component={HashtagSelector} />
           <ProtectedRoute path={Urls.routes.account} component={Account} />
         </Switch>
       </Router>

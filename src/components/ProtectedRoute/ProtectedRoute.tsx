@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import Urls from "constants/urls";
 import { ComponentType } from "react";
 import { Redirect, Route, RouteProps } from "react-router-dom";
@@ -5,9 +6,7 @@ import { Redirect, Route, RouteProps } from "react-router-dom";
 type Props = RouteProps & { component: ComponentType<any> };
 
 const ProtectedRoute = ({ component: Component, ...routeProps }: Props) => {
-  // TODO: connect protected route to Auth0
-  const token = "foo";
-  const isAuthenticated = Boolean(token);
+  const { isAuthenticated } = useAuth0();
 
   return (
     <Route
@@ -16,7 +15,7 @@ const ProtectedRoute = ({ component: Component, ...routeProps }: Props) => {
         isAuthenticated ? (
           <Component {...props} />
         ) : (
-          <Redirect to={Urls.routes.login} />
+          <Redirect to={Urls.routes.root} />
         )
       }
     />

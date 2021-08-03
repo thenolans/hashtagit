@@ -9,8 +9,9 @@ const Urls = {
     login: "/login",
     register: "/register",
     logout: "/logout",
-    selector: "/selector",
+    app: "/app",
     account: "/account",
+    root: "/",
   },
 };
 

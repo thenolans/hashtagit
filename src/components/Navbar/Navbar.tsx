@@ -8,7 +8,7 @@ export default function Navbar() {
       <Container>
         <div className="flex items-center justify-between px-4">
           <Icon as="fa-user" className="invisible" />
-          <Link to={Urls.routes.selector}>
+          <Link className="text-3xl" to={Urls.routes.app}>
             <Logo />
           </Link>
           <Link to={Urls.routes.account}>
