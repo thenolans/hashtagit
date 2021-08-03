@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import Footer from "components/Footer";
 import Logo from "components/Logo";
 import Urls from "constants/urls";
 import { Button, Container } from "react-kit";
@@ -38,6 +39,7 @@ export default function LandingPage() {
           </div>
         )}
       </div>
+      <Footer />
     </Container>
   );
 }
