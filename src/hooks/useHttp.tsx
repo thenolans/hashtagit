@@ -45,10 +45,18 @@ export default function useHttp() {
       .then((res) => res.data.data);
   }
 
+  async function deleteAccount() {
+    const authHeader = await getAuthHeader();
+    return http.delete(`api/account`, {
+      headers: authHeader,
+    });
+  }
+
   return {
     listCategories,
     createCategory,
     removeCategory,
     updateCategory,
+    deleteAccount,
   };
 }

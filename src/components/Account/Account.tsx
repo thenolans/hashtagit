@@ -1,10 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import PageLayout from "components/PageLayout";
 import Urls from "constants/urls";
+import useHttp from "hooks/useHttp";
 import { Button, Icon, Link } from "react-kit";
 
 export default function Account() {
   const { logout } = useAuth0();
+  const { deleteAccount } = useHttp();
 
   return (
     <PageLayout>
@@ -29,13 +31,22 @@ export default function Account() {
           </div>
           <div className="py-3">
             <Button
-              onClick={() => {
-                // TODO Handle remove account with Auth0
+              onClick={async () => {
+                if (
+                  window.confirm(
+                    "Are you sure you want to delete your data? This action cannot be undone!"
+                  )
+                ) {
+                  await deleteAccount();
+                  logout({
+                    returnTo: window.location.origin,
+                  });
+                }
               }}
               theme="link--danger"
             >
               <Icon as="fa-trash" className="mr-2" />
-              Delete my account
+              Delete my data
             </Button>
           </div>
         </div>
