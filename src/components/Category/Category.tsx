@@ -8,9 +8,10 @@ import { Category as CategoryType } from "types";
 
 type Props = {
   category: CategoryType;
+  sample?: boolean;
 };
 
-export default function Category({ category }: Props) {
+export default function Category({ category, sample }: Props) {
   const { name, hashtags, _id } = category;
   const [isEditing, toggleIsEditing] = useToggle();
   const { triggerProps, containerProps, isExpanded } = useAnimateHeight(true);
@@ -40,9 +41,11 @@ export default function Category({ category }: Props) {
               </div>
             </div>
           </Button>
-          <Button theme="link" onClick={toggleIsEditing}>
-            Edit
-          </Button>
+          {!sample && (
+            <Button theme="link" onClick={toggleIsEditing}>
+              Edit
+            </Button>
+          )}
         </div>
         <AnimateHeight {...containerProps}>
           <Card.Body borderTop>
