@@ -1,9 +1,8 @@
 const Urls = {
   api: {
-    login: "/api/login",
-    register: "/api/register",
-    user: "/api/user",
-    changePassword: "/api/user/change-password",
+    categories: "/hashtagit/categories",
+    category: "/hashtagit/categories/:id",
+    account: "/account",
   },
   routes: {
     login: "/login",
