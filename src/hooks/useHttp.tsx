@@ -60,7 +60,7 @@ export default function useHttp() {
 
   async function deleteAccount() {
     const authHeader = await getAuthHeader();
-    return http.delete(Urls.api.account, {
+    return http.delete(`${Urls.api.account}?hashtagit=true`, {
       headers: authHeader,
     });
   }
