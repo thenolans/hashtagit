@@ -5,6 +5,7 @@ import useHashtags from "hooks/useHashtags";
 import AnimateHeight from "react-animate-height";
 import { Button, Card, Checkbox, Icon, useToggle } from "react-kit";
 import { Category as CategoryType } from "types";
+import formatHashtags from "utilities/formatHashtags";
 
 type Props = {
   category: CategoryType;
@@ -107,10 +108,11 @@ export default function Category({ category, sample }: Props) {
         </Button>
       }
       initialValues={{ name, hashtags }}
-      onSubmit={(values) => {
+      onSubmit={({ name, hashtags }) => {
         updateCategory({
           _id,
-          ...values,
+          name,
+          hashtags: formatHashtags(hashtags),
         });
         toggleIsEditing();
       }}

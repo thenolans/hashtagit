@@ -1,6 +1,7 @@
 import CategoryForm from "components/CategoryForm";
 import useCategories from "hooks/useCategories";
 import { Button, Icon, useToggle } from "react-kit";
+import formatHashtags from "utilities/formatHashtags";
 
 export default function AddCategory() {
   const [isAdding, toggleIsAdding] = useToggle();
@@ -21,8 +22,11 @@ export default function AddCategory() {
 
   return (
     <CategoryForm
-      onSubmit={(values) => {
-        addCategory(values);
+      onSubmit={({ name, hashtags }) => {
+        addCategory({
+          name,
+          hashtags: formatHashtags(hashtags),
+        });
         toggleIsAdding();
       }}
       additionalActions={
