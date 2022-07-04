@@ -6,11 +6,11 @@ import Logo from "components/Logo";
 import Urls from "constants/urls";
 import { HashtagProvider } from "contexts/hashtags";
 import { Button, Container } from "react-kit";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <div className="pb-20">
@@ -25,9 +25,7 @@ export default function LandingPage() {
             tags!
           </p>
           {isAuthenticated ? (
-            <Button onClick={() => history.push(Urls.routes.app)}>
-              Go to app
-            </Button>
+            <Button onClick={() => navigate(Urls.routes.app)}>Go to app</Button>
           ) : (
             <div className="space-x-4">
               <Button onClick={() => loginWithRedirect()}>Login</Button>
