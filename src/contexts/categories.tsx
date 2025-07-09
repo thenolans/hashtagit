@@ -1,7 +1,12 @@
-import useHttp from "hooks/useHttp";
+import { useQuery } from "@tanstack/react-query";
+import {
+  createCategory,
+  destroyCategory,
+  getCategories,
+  patchCategory,
+} from "api/categories";
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { Category, Response } from "types";
+import { Category, QueryKeys } from "types";
 
 type CategoryContextType = {
   categories: Category[];
@@ -20,25 +25,15 @@ const CategoryContext = createContext<CategoryContextType>({
 });
 
 export const CategoryProvider = ({ children }: { children: ReactNode }) => {
-  const {
-    listCategories,
-    createCategory,
-    removeCategory: removeCategoryRequest,
-    updateCategory: updateCategoryRequest,
-  } = useHttp();
   const [categories, setCategories] = useState<Category[]>([]);
-  const { data, isLoading: isFetching } = useQuery<Response<Category[]>>(
-    ["categories"],
-    () => listCategories(),
-    {
-      retry: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { data, isFetching } = useQuery<Category[]>({
+    queryKey: [QueryKeys.CATEGORIES],
+    queryFn: getCategories,
+  });
 
   useEffect(() => {
-    if (data?.data?.length) {
-      setCategories(data.data);
+    if (data?.length) {
+      setCategories(data);
     }
   }, [data]);
 
@@ -53,7 +48,7 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
 
   async function updateCategory(category: Category) {
     try {
-      const updatedCategory = await updateCategoryRequest(category);
+      const updatedCategory = await patchCategory(category);
       setCategories((prevCategories) =>
         prevCategories.map((c) => {
           if (c._id === updatedCategory._id) {
@@ -69,7 +64,7 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
 
   async function removeCategory(categoryId: string) {
     try {
-      await removeCategoryRequest(categoryId);
+      await destroyCategory(categoryId);
       setCategories((prevCategories) =>
         prevCategories.filter((category) => category._id !== categoryId)
       );

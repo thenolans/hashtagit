@@ -1,12 +1,9 @@
 import { Button, Icon } from "@thenolans/nolan-ui";
 import PageLayout from "components/PageLayout";
 import Urls from "constants/urls";
-import useHttp from "hooks/useHttp";
 import { Link } from "react-router-dom";
 
 export default function Account() {
-  const { deleteAccount } = useHttp();
-
   function logout() {}
 
   return (
@@ -21,24 +18,6 @@ export default function Account() {
             <Button theme="tertiary" onClick={() => logout()}>
               <Icon icon="LogOut" className="mr-2" />
               Logout
-            </Button>
-          </div>
-          <div className="py-3">
-            <Button
-              onClick={async () => {
-                if (
-                  window.confirm(
-                    "Are you sure you want to delete your data? This action cannot be undone!"
-                  )
-                ) {
-                  await deleteAccount();
-                  logout();
-                }
-              }}
-              theme="tertiary"
-            >
-              <Icon icon="Trash" className="mr-2" />
-              Delete my data
             </Button>
           </div>
         </div>

@@ -21,7 +21,6 @@
     "react-animate-height": "^3.0.4",
     "react-dom": "^18.2.0",
     "react-id-generator": "^3.0.2",
-    "react-query": "^3.39.1",
     "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.7.4",
