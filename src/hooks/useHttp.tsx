@@ -1,15 +1,12 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import Urls from "constants/urls";
 import { reverse } from "named-urls";
 import { Category } from "types";
 import http from "utilities/http";
 
 export default function useHttp() {
-  const { getAccessTokenSilently } = useAuth0();
-
   async function getAuthHeader() {
     return {
-      authorization: `Bearer ${await getAccessTokenSilently()}`,
+      authorization: "Bearer",
     };
   }
 

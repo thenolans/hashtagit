@@ -1,6 +1,6 @@
+import { Icon } from "@thenolans/nolan-ui";
 import Category from "components/Category";
 import useCategories from "hooks/useCategories";
-import { Icon } from "react-kit";
 
 export default function Categories() {
   const { categories, isFetching } = useCategories();
@@ -8,7 +8,7 @@ export default function Categories() {
   if (isFetching)
     return (
       <div className="text-center py-4 text-gray-400">
-        <Icon className="fa-2x" as="fa fa-circle-o-notch" spin />
+        <Icon size={32} icon="Loader" className="animate-spin" />
       </div>
     );
 

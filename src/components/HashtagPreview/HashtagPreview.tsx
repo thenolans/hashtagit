@@ -1,10 +1,10 @@
+import { Button } from "@thenolans/nolan-ui";
 import classNames from "classnames";
 import copy from "copy-to-clipboard";
 import useAnimateHeight from "hooks/useAnimateHeight";
 import useHashtags from "hooks/useHashtags";
 import { useState } from "react";
 import AnimateHeight from "react-animate-height";
-import { Button } from "react-kit";
 import alphabetize from "utilities/alphabetize";
 
 export default function HashtagPreview() {

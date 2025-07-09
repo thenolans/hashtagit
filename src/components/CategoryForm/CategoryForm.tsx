@@ -1,6 +1,8 @@
+import { Button, Icon } from "@thenolans/nolan-ui";
+import Card from "components/Card";
+import Input from "components/Input";
 import { FieldArray, Form, Formik } from "formik";
 import { ReactNode, useEffect, useRef } from "react";
-import { Button, Card, Icon, Input } from "react-kit";
 import * as Yup from "yup";
 
 type FormData = {
@@ -59,7 +61,7 @@ export default function CategoryForm({
               />
             </div>
           </Card.Header>
-          <Card.Body borderTop>
+          <Card.Body>
             <Form>
               <div className="space-y-8">
                 <FieldArray
@@ -102,13 +104,13 @@ export default function CategoryForm({
                               className={
                                 isOnlyHashtag ? "invisible" : undefined
                               }
-                              theme="link--danger"
+                              theme="tertiary"
                               aria-label="Remove hashtag"
                               aria-hidden={isOnlyHashtag}
                               disabled={isOnlyHashtag}
                               onClick={() => arrayHelpers.remove(index)}
                             >
-                              <Icon as="fa-trash" />
+                              <Icon icon="Trash" />
                             </Button>
                           </div>
                         );
@@ -118,7 +120,7 @@ export default function CategoryForm({
                           onClick={() => {
                             arrayHelpers.insert(values.hashtags.length, "");
                           }}
-                          theme="link"
+                          theme="tertiary"
                         >
                           Add hashtag
                         </Button>

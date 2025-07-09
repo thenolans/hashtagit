@@ -1,6 +1,6 @@
+import { Container } from "@thenolans/nolan-ui";
 import Navbar from "components/Navbar";
 import { ReactNode } from "react";
-import { Container } from "react-kit";
 
 type Props = {
   children: ReactNode;

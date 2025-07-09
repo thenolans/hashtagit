@@ -1,9 +1,11 @@
+import { Button, Card, Icon } from "@thenolans/nolan-ui";
 import CategoryForm from "components/CategoryForm";
+import Checkbox from "components/Checkbox/Checkbox";
 import useAnimateHeight from "hooks/useAnimateHeight";
 import useCategories from "hooks/useCategories";
 import useHashtags from "hooks/useHashtags";
+import { useState } from "react";
 import AnimateHeight from "react-animate-height";
-import { Button, Card, Checkbox, Icon, useToggle } from "react-kit";
 import { Category as CategoryType } from "types";
 import formatHashtags from "utilities/formatHashtags";
 
@@ -14,7 +16,7 @@ type Props = {
 
 export default function Category({ category, sample }: Props) {
   const { name, hashtags, _id } = category;
-  const [isEditing, toggleIsEditing] = useToggle();
+  const [isEditing, setIsEditing] = useState(false);
   const { triggerProps, containerProps, isExpanded } = useAnimateHeight(true);
   const { removeCategory, updateCategory } = useCategories();
   const { selected, toggleOne, selectMany, unselectMany } = useHashtags();
@@ -33,7 +35,7 @@ export default function Category({ category, sample }: Props) {
           >
             <Icon
               className="text-gray-400 mr-4"
-              as={isExpanded ? "fa-angle-up" : "fa-angle-down"}
+              icon={isExpanded ? "ChevronUp" : "ChevronDown"}
             />
             <div className="text-left space-y-1">
               <h3 className="text-gray-700">{name}</h3>
@@ -43,28 +45,22 @@ export default function Category({ category, sample }: Props) {
             </div>
           </Button>
           {!sample && (
-            <Button theme="link" onClick={toggleIsEditing}>
+            <Button theme="tertiary" onClick={() => setIsEditing(true)}>
               Edit
             </Button>
           )}
         </div>
         <AnimateHeight {...containerProps}>
-          <Card.Body borderTop>
+          <Card.Body>
             {!!hashtags.length && (
               <div className="mb-2 text-gray-500 text-sm">
-                <Button
-                  theme="link--muted"
-                  onClick={() => selectMany(hashtags)}
-                >
+                <Button theme="tertiary" onClick={() => selectMany(hashtags)}>
                   Select all
                 </Button>
                 <span aria-hidden="true" className="mx-2">
                   |
                 </span>
-                <Button
-                  theme="link--muted"
-                  onClick={() => unselectMany(hashtags)}
-                >
+                <Button theme="tertiary" onClick={() => unselectMany(hashtags)}>
                   Unselect all
                 </Button>
               </div>
@@ -102,7 +98,7 @@ export default function Category({ category, sample }: Props) {
               removeCategory(_id);
             }
           }}
-          theme="link--danger"
+          theme="tertiary"
         >
           Delete category
         </Button>
@@ -114,7 +110,7 @@ export default function Category({ category, sample }: Props) {
           name,
           hashtags: formatHashtags(hashtags),
         });
-        toggleIsEditing();
+        setIsEditing(false);
       }}
     />
   );

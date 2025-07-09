@@ -1,6 +1,6 @@
+import { BuiltByTheNolans } from "@thenolans/nolan-ui";
 import AddCategory from "components/AddCategory";
 import Categories from "components/Categories";
-import Footer from "components/Footer";
 import HashtagPreview from "components/HashtagPreview";
 import PageLayout from "components/PageLayout";
 import { CategoryProvider } from "contexts/categories";
@@ -18,7 +18,8 @@ function App() {
         </div>
         <HashtagPreview />
       </HashtagProvider>
-      <Footer />
+
+      <BuiltByTheNolans />
     </PageLayout>
   );
 }

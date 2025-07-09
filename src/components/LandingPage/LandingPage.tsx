@@ -1,15 +1,18 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import {
+  BuiltByTheNolans,
+  Button,
+  Container,
+  useSSO,
+} from "@thenolans/nolan-ui";
 import Category from "components/Category";
-import Footer from "components/Footer";
 import HashtagPreview from "components/HashtagPreview";
 import Logo from "components/Logo";
 import Urls from "constants/urls";
 import { HashtagProvider } from "contexts/hashtags";
-import { Button, Container } from "react-kit";
 import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated } = useSSO();
   const navigate = useNavigate();
 
   return (
@@ -28,15 +31,8 @@ export default function LandingPage() {
             <Button onClick={() => navigate(Urls.routes.app)}>Go to app</Button>
           ) : (
             <div className="space-x-4">
-              <Button onClick={() => loginWithRedirect()}>Login</Button>
-              <Button
-                onClick={() =>
-                  loginWithRedirect({
-                    screen_hint: "signup",
-                  })
-                }
-                theme="secondary"
-              >
+              <Button onClick={() => {}}>Login</Button>
+              <Button onClick={() => {}} theme="secondary">
                 Sign up
               </Button>
             </div>
@@ -83,7 +79,7 @@ export default function LandingPage() {
             </HashtagProvider>
           </div>
         </div>
-        <Footer />
+        <BuiltByTheNolans />
       </Container>
     </div>
   );

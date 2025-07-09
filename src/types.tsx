@@ -10,11 +10,6 @@ export type Response<T> = {
   data: T;
 };
 
-export type AuthCredentials = {
-  email: string;
-  password: string;
-};
-
 export type PasswordReset = {
   currentPassword: string;
   newPassword: string;

@@ -1,31 +1,25 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Icon } from "@thenolans/nolan-ui";
 import PageLayout from "components/PageLayout";
 import Urls from "constants/urls";
 import useHttp from "hooks/useHttp";
-import { Button, Icon, Link } from "react-kit";
+import { Link } from "react-router-dom";
 
 export default function Account() {
-  const { logout } = useAuth0();
   const { deleteAccount } = useHttp();
+
+  function logout() {}
 
   return (
     <PageLayout>
       <div className="space-y-6">
         <Link to={Urls.routes.app}>
-          <Icon as="fa-angle-left" className="mr-2" />
+          <Icon icon="ChevronLeft" className="mr-2" />
           Return to app
         </Link>
         <div className="grid grid-cols-1 divide-y divide-gray-300">
           <div className="py-3">
-            <Button
-              theme="link"
-              onClick={() =>
-                logout({
-                  returnTo: window.location.origin,
-                })
-              }
-            >
-              <Icon as="fa-sign-out" className="mr-2" />
+            <Button theme="tertiary" onClick={() => logout()}>
+              <Icon icon="LogOut" className="mr-2" />
               Logout
             </Button>
           </div>
@@ -38,14 +32,12 @@ export default function Account() {
                   )
                 ) {
                   await deleteAccount();
-                  logout({
-                    returnTo: window.location.origin,
-                  });
+                  logout();
                 }
               }}
-              theme="link--danger"
+              theme="tertiary"
             >
-              <Icon as="fa-trash" className="mr-2" />
+              <Icon icon="Trash" className="mr-2" />
               Delete my data
             </Button>
           </div>
