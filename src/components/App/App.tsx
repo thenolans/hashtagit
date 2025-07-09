@@ -1,4 +1,4 @@
-import { ProtectedRoutes } from "@thenolans/nolan-ui";
+import { ProtectedRoutes, SSOContextProvider } from "@thenolans/nolan-ui";
 import Account from "components/Account";
 import HashtagSelector from "components/HashtagSelector";
 import LandingPage from "components/LandingPage";
@@ -11,15 +11,23 @@ const queryClient = new QueryClient();
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<LandingPage />} />
-          <Route element={<ProtectedRoutes redirectPath={Urls.routes.root} />}>
-            <Route path={Urls.routes.app} element={<HashtagSelector />} />
-            <Route path={Urls.routes.account} element={<Account />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <SSOContextProvider
+        cookieDomain={process.env.REACT_APP_TOKEN_COOKIE_DOMAIN!}
+        cookieName={process.env.REACT_APP_TOKEN_COOKIE_NAME!}
+        apiBaseUrl={process.env.REACT_APP_API_BASE_URL!}
+      >
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<LandingPage />} />
+            <Route
+              element={<ProtectedRoutes redirectPath={Urls.routes.root} />}
+            >
+              <Route path={Urls.routes.app} element={<HashtagSelector />} />
+              <Route path={Urls.routes.account} element={<Account />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </SSOContextProvider>
     </QueryClientProvider>
   );
 };
