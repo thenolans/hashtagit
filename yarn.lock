@@ -2157,10 +2157,10 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.2.1.tgz#8c5ff2d004544bb2220e1d864f7267fe7eb6c556"
   integrity sha512-HOr1QiODrq+0j9lKU5i10y9TbhxMBMRMGimNx10asdmau9cb8Xb1Vyg0GvTwyIL2ziQyh2kAloOtAQFBQVuecA==
 
-"@thenolans/nolan-ui@^1.38.0":
-  version "1.38.0"
-  resolved "https://npm.pkg.github.com/download/@thenolans/nolan-ui/1.38.0/cb9df10189cbc8ccb436ce8a975cd5fc0a0533ad#cb9df10189cbc8ccb436ce8a975cd5fc0a0533ad"
-  integrity sha512-V6fLcqaqxgnA5FQirqkBx3rRRJzOMQNnPQxsGn3xO9u7Js2opYHxbL8FsjUmjbEMjEMndPRkIUeoQwNpsza8cQ==
+"@thenolans/nolan-ui@^1.41.1":
+  version "1.41.1"
+  resolved "https://npm.pkg.github.com/download/@thenolans/nolan-ui/1.41.1/98270f84dc72a966d754e6b202e5cc5ae5d1115a#98270f84dc72a966d754e6b202e5cc5ae5d1115a"
+  integrity sha512-rzFZ5RvoiTzwfkDfya1OsmH0r/QqpCol4Up5xKE/GDVIJvhl4e+W4TzMRE3StcxlSR4fbFlsxiFFqYfDKc4NBA==
   dependencies:
     "@reach/dialog" "^0.18.0"
     "@react-spring/web" "^9.7.3"
@@ -8210,6 +8210,11 @@ react-is@^18.0.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-masonry-css@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/react-masonry-css/-/react-masonry-css-1.0.16.tgz#72b28b4ae3484e250534700860597553a10f1a2c"
+  integrity sha512-KSW0hR2VQmltt/qAa3eXOctQDyOu7+ZBevtKgpNDSzT7k5LA/0XntNa9z9HKCdz3QlxmJHglTZ18e4sX4V8zZQ==
 
 react-refresh@^0.11.0:
   version "0.11.0"

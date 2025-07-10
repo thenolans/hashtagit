@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 body {
+  background: url("./assets/topography_gray.png") repeat;
+}
+
+body * {
   font-family: "Nunito", sans-serif;
 }
 

@@ -1,6 +1,4 @@
-import { Button, Icon } from "@thenolans/nolan-ui";
-import Card from "components/Card";
-import Input from "components/Input";
+import { Button, Card, Icon, TextInput } from "@thenolans/nolan-ui";
 import { FieldArray, Form, Formik } from "formik";
 import { ReactNode, useEffect, useRef } from "react";
 import * as Yup from "yup";
@@ -27,6 +25,7 @@ export default function CategoryForm({
 }: Props) {
   const nameInputRef = useRef<HTMLInputElement>(null);
   const lastHashtagInputRef = useRef<HTMLInputElement>(null);
+  const autoFocusHashtags = !!initialValues?.hashtags?.length;
 
   useEffect(() => {
     nameInputRef?.current?.focus();
@@ -51,12 +50,13 @@ export default function CategoryForm({
         <Card>
           <Card.Header>
             <div className="pl-4 mr-7">
-              <Input
+              <TextInput
+                autoFocus={!autoFocusHashtags}
                 name="name"
                 value={values.name}
                 onChange={handleChange}
                 placeholder="Category name..."
-                hasError={Boolean(errors?.name)}
+                error={errors.name}
                 ref={nameInputRef}
               />
             </div>
@@ -78,28 +78,29 @@ export default function CategoryForm({
                             >
                               #
                             </span>
-                            <Input
-                              autoFocus
-                              name={`hashtags.${index}`}
-                              value={values.hashtags[index]}
-                              onChange={handleChange}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  arrayHelpers.insert(
-                                    values.hashtags.length,
-                                    ""
-                                  );
+                            <div className="mr-2 w-full">
+                              <TextInput
+                                autoFocus={autoFocusHashtags}
+                                name={`hashtags.${index}`}
+                                value={values.hashtags[index]}
+                                onChange={handleChange}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    arrayHelpers.insert(
+                                      values.hashtags.length,
+                                      ""
+                                    );
+                                  }
+                                }}
+                                placeholder="Hashtag..."
+                                ref={
+                                  index === values.hashtags.length - 1
+                                    ? lastHashtagInputRef
+                                    : undefined
                                 }
-                              }}
-                              className="mr-4"
-                              placeholder="Hashtag..."
-                              ref={
-                                index === values.hashtags.length - 1
-                                  ? lastHashtagInputRef
-                                  : undefined
-                              }
-                            />
+                              />
+                            </div>
                             <Button
                               className={
                                 isOnlyHashtag ? "invisible" : undefined
@@ -110,7 +111,11 @@ export default function CategoryForm({
                               disabled={isOnlyHashtag}
                               onClick={() => arrayHelpers.remove(index)}
                             >
-                              <Icon icon="Trash" />
+                              <Icon
+                                size={16}
+                                className="text-red-600"
+                                icon="Trash"
+                              />
                             </Button>
                           </div>
                         );

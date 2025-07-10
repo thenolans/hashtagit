@@ -10,8 +10,8 @@ function PageLayout({ children }: Props) {
   return (
     <>
       <Navbar />
-      <Container>
-        <div className="p-4 pb-20">{children}</div>
+      <Container className="max-w-5xl">
+        <div className="pb-20 pt-6">{children}</div>
       </Container>
     </>
   );

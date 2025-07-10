@@ -13,7 +13,7 @@ export default function AddCategory() {
       <Button
         theme="reset"
         onClick={() => setIsAdding(true)}
-        className="text-gray-400 border-2 border-dashed border-gray-400 hover:text-primary-800 hover:border-primary-800 rounded w-full py-4 transition-colors"
+        className="text-gray-400 border-2 border-dashed border-gray-400 hover:text-primary-800 hover:border-primary-800 rounded-xl w-full py-4 transition-colors flex items-center justify-center"
       >
         <Icon icon="Plus" className="mr-2" />
         Add category
@@ -31,7 +31,11 @@ export default function AddCategory() {
         setIsAdding(false);
       }}
       additionalActions={
-        <Button onClick={() => setIsAdding(false)} theme="tertiary">
+        <Button
+          className="text-red-600"
+          onClick={() => setIsAdding(false)}
+          theme="tertiary"
+        >
           Cancel
         </Button>
       }

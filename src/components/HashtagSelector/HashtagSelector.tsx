@@ -13,13 +13,16 @@ function App() {
         <div className="space-y-4">
           <CategoryProvider>
             <Categories />
-            <AddCategory />
+            <div className="max-w-xs mx-auto">
+              <AddCategory />
+            </div>
           </CategoryProvider>
         </div>
         <HashtagPreview />
       </HashtagProvider>
-
-      <BuiltByTheNolans />
+      <div className="mt-8">
+        <BuiltByTheNolans />
+      </div>
     </PageLayout>
   );
 }

@@ -1,5 +1,6 @@
 import { Button } from "@thenolans/nolan-ui";
 import classNames from "classnames";
+import Logo from "components/Logo";
 import copy from "copy-to-clipboard";
 import useAnimateHeight from "hooks/useAnimateHeight";
 import useHashtags from "hooks/useHashtags";
@@ -55,8 +56,13 @@ export default function HashtagPreview() {
               </div>
             </>
           ) : (
-            <div className="text-gray-400 text-center flex items-center">
-              Select hashtags from the list to copy them to your clipboard
+            <div className="space-y-4">
+              <div className="grayscale opacity-25">
+                <Logo className="mx-auto" />
+              </div>
+              <div className="text-gray-400 text-center flex items-center">
+                Select hashtags from the list to copy them to your clipboard
+              </div>
             </div>
           )}
         </div>
