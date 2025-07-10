@@ -19,7 +19,7 @@ export default function HashtagPreview() {
     <div className="fixed text-gray-700 bottom-0 right-0 left-0 sm:left-auto sm:right-4 sm:w-80 bg-white sm:rounded-t shadow-md overflow-hidden">
       <Button
         theme="reset"
-        className="w-full text-left p-4 bg-blue-600 text-white flex items-center justify-between"
+        className="w-full text-left p-4 bg-primary-700 text-white flex items-center justify-between"
         {...triggerProps}
       >
         Results {!!selected.length && `(${selected.length})`}

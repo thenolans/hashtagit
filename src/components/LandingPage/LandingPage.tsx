@@ -12,7 +12,7 @@ import { HashtagProvider } from "contexts/hashtags";
 import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
-  const { isAuthenticated } = useSSO();
+  const { isAuthenticated, logout } = useSSO();
   const navigate = useNavigate();
 
   return (
@@ -22,13 +22,23 @@ export default function LandingPage() {
           <div className="text-5xl">
             <Logo />
           </div>
-          <p>
+          <div className="max-w-lg mx-auto">
             Quickly build and copy a list of hashtags for your social media
             posts by selecting from your personalized database of commonly used
             tags!
-          </p>
+          </div>
           {isAuthenticated ? (
-            <Button onClick={() => navigate(Urls.routes.app)}>Go to app</Button>
+            <div className="space-x-4">
+              <Button onClick={() => navigate(Urls.routes.app)}>
+                Go to app
+              </Button>
+              <Button
+                onClick={() => logout(window.location.href)}
+                theme="secondary"
+              >
+                Logout
+              </Button>
+            </div>
           ) : (
             <div className="space-x-4">
               <Button onClick={() => {}}>Login</Button>
@@ -38,7 +48,7 @@ export default function LandingPage() {
             </div>
           )}
           <hr />
-          <h3 className="text-2xl text-blue-700">Try it out!</h3>
+          <h3 className="text-2xl text-primary-700">Try it out!</h3>
           <p>
             Select any or all of the hashtags from the list below and click
             "Results" to review and copy them to the clipboard. Create an
