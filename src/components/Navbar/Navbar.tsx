@@ -12,9 +12,6 @@ export default function Navbar() {
           <Link className="text-3xl" to={Urls.routes.app}>
             <Logo />
           </Link>
-          <Link to={Urls.routes.account}>
-            <Icon icon="User" />
-          </Link>
         </div>
       </Container>
     </div>

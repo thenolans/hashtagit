@@ -5,7 +5,6 @@ const Urls = {
   },
   routes: {
     app: "/app",
-    account: "/account",
     root: "/",
   },
 };
