@@ -8,7 +8,7 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 export async function createCategory(
-  category: Omit<Category, "_id">
+  category: Omit<Category, "id">
 ): Promise<Category> {
   return post({
     path: Urls.api.categories,
@@ -16,7 +16,7 @@ export async function createCategory(
   });
 }
 
-export async function destroyCategory(categoryId: string) {
+export async function destroyCategory(categoryId: number) {
   return destroy({
     path: reverse(Urls.api.category, {
       id: categoryId,
@@ -27,7 +27,7 @@ export async function destroyCategory(categoryId: string) {
 export async function patchCategory(category: Category): Promise<Category> {
   return patch({
     path: reverse(Urls.api.category, {
-      id: category._id,
+      id: category.id,
     }),
     data: category,
   });

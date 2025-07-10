@@ -10,9 +10,9 @@ import { Category, QueryKeys } from "types";
 
 type CategoryContextType = {
   categories: Category[];
-  addCategory: (category: Omit<Category, "_id">) => void;
+  addCategory: (category: Omit<Category, "id">) => void;
   updateCategory: (category: Category) => void;
-  removeCategory: (categoryId: string) => void;
+  removeCategory: (categoryId: number) => void;
   isFetching: boolean;
 };
 
@@ -37,7 +37,7 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [data]);
 
-  async function addCategory(category: Omit<Category, "_id">) {
+  async function addCategory(category: Omit<Category, "id">) {
     try {
       const newCategory = await createCategory(category);
       setCategories((prevCategories) => [...prevCategories, newCategory]);
@@ -51,7 +51,7 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
       const updatedCategory = await patchCategory(category);
       setCategories((prevCategories) =>
         prevCategories.map((c) => {
-          if (c._id === updatedCategory._id) {
+          if (c.id === updatedCategory.id) {
             return updatedCategory;
           }
           return c;
@@ -62,11 +62,11 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
-  async function removeCategory(categoryId: string) {
+  async function removeCategory(categoryId: number) {
     try {
       await destroyCategory(categoryId);
       setCategories((prevCategories) =>
-        prevCategories.filter((category) => category._id !== categoryId)
+        prevCategories.filter((category) => category.id !== categoryId)
       );
     } catch {
       // TODO

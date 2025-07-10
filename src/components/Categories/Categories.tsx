@@ -17,7 +17,7 @@ export default function Categories() {
   return (
     <>
       {categories.map((category) => (
-        <Category category={category} key={category._id} />
+        <Category category={category} key={category.id} />
       ))}
     </>
   );

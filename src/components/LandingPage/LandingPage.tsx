@@ -50,7 +50,7 @@ export default function LandingPage() {
                 <Category
                   sample
                   category={{
-                    _id: "sample1",
+                    id: 1,
                     name: "Dog posts",
                     hashtags: [
                       "dogs",
@@ -64,7 +64,7 @@ export default function LandingPage() {
                 <Category
                   sample
                   category={{
-                    _id: "sample2",
+                    id: 2,
                     name: "Photography posts",
                     hashtags: [
                       "photography",

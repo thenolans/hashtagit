@@ -1,7 +1,7 @@
 export type Hashtag = string;
 
 export type Category = {
-  _id: string;
+  id: number;
   name: string;
   hashtags: Hashtag[];
 };

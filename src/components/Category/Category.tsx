@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function Category({ category, sample }: Props) {
-  const { name, hashtags, _id } = category;
+  const { name, hashtags, id } = category;
   const [isEditing, setIsEditing] = useState(false);
   const { triggerProps, containerProps, isExpanded } = useAnimateHeight(true);
   const { removeCategory, updateCategory } = useCategories();
@@ -95,7 +95,7 @@ export default function Category({ category, sample }: Props) {
             if (
               window.confirm("Are you sure you want to delete this category?")
             ) {
-              removeCategory(_id);
+              removeCategory(id);
             }
           }}
           theme="tertiary"
@@ -106,7 +106,7 @@ export default function Category({ category, sample }: Props) {
       initialValues={{ name, hashtags }}
       onSubmit={({ name, hashtags }) => {
         updateCategory({
-          _id,
+          id,
           name,
           hashtags: formatHashtags(hashtags),
         });
